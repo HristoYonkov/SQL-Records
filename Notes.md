@@ -93,3 +93,16 @@
 -- 		(102, "Ice Cream", 4.50);
 -- SELECT * FROM products;
 
+-------------------------------------- NOT NULL Constraint -------------------------------
+-- CREATE TABLE products(
+-- 		product_id INT,
+-- 		product_name VARCHAR(25),
+--      product_price DECIMAL(4, 2) NOT NULL // - Add it when creating a table.
+-- );
+
+-- ALTER TABLE products
+-- MODIFY product_price DECIMAL(4, 2) NOT NULL; // - Or add it later.
+
+-- INSERT INTO products
+-- VALUES(103, "Mocolate", NULL); // - This will not create the row you can add 0 value.
+-- SELECT * FROM products;
