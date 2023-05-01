@@ -60,9 +60,14 @@
 -- SELECT * FROM employees;
 
 -------------------------- Auto Commit, Commit, Rollback ---------------------
--- SET AUTOCOMMIT = OFF; // - Default on. Manually create savepoint when we need!
--- COMMIT; // - Creating a safepoint.
--- ROLLBACK; // - Load last savepoint
+// Default on. Manually create savepoint when we need!
+-- SET AUTOCOMMIT = OFF;
+
+// Creating a safepoint.
+-- COMMIT;
+
+// Load last savepoint.
+-- ROLLBACK;
 -- DELETE FROM employeescoppy;
 -- SELECT * FROM employeescoppy;
 
@@ -106,3 +111,26 @@
 -- INSERT INTO products
 -- VALUES(103, "Mocolate", NULL); // - This will not create the row you can add 0 value.
 -- SELECT * FROM products;
+
+-------------------------------------- CHECK Constraint -----------------------------------
+// - Add a check when create table.
+-- CREATE TABLE employees (
+-- 	employee_id INT,
+--     first_name VARCHAR(50),
+--     last_name VARCHAR(50),
+--     hourly_pay DECIMAL(5, 2),
+--     hire_date DATE,
+-- 	   CONSTRAINT chk_hourly_pay CHECK (hourly_pay  >= 10.00)
+-- );
+
+// - Insert CHECK constraint later in the table.
+-- ALTER TABLE employees
+-- ADD CONSTRAINT chk_hourlt_pay CHECK (hourly_pay  >= 10.00);
+
+// This will throw check error.
+-- INSERT INTO employees
+-- VALUES (6, "Sheldon", "Plankton", "asda@abv.bg", 5.00, "2023-01-07");
+
+// This will drop the check constraint!
+-- ALTER TABLE employees
+-- DROP CHECK chk_hourly_pay;
