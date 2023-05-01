@@ -65,3 +65,13 @@
 -- ROLLBACK; - Load last savepoint
 -- DELETE FROM employeescoppy;
 -- SELECT * FROM employeescoppy;
+
+------------------------- CURRENT_DATE() && CURRENT_TIME() -------------------
+-- CREATE TABLE test(
+-- 	my_date DATE,
+--     my_time TIME,
+--     my_datetime DATETIME
+-- );
+-- INSERT INTO test
+-- VALUES(CURRENT_DATE() + 1, CURRENT_TIME(), NOW());
+-- SELECT * FROM test;
