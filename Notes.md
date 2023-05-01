@@ -58,3 +58,10 @@
 -- DELETE FROM employees // Delete all rows!
 -- DELETE FROM employees WHERE employee_id = 6;
 -- SELECT * FROM employees;
+
+-------------------------- Auto Commit, Commit, Rollback ---------------------
+-- SET AUTOCOMMIT = OFF; - Default on. Manually create savepoint when we need!
+-- COMMIT; - Creating a safepoint.
+-- ROLLBACK; - Load last savepoint
+-- DELETE FROM employeescoppy;
+-- SELECT * FROM employeescoppy;
