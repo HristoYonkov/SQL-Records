@@ -113,7 +113,7 @@
 -- SELECT * FROM products;
 
 -------------------------------------- CHECK Constraint -----------------------------------
-// - Add a check when create table.
+// - Add a check constraint when create table.
 -- CREATE TABLE employees (
 -- 	employee_id INT,
 --     first_name VARCHAR(50),
@@ -134,3 +134,20 @@
 // This will drop the check constraint!
 -- ALTER TABLE employees
 -- DROP CHECK chk_hourly_pay;
+
+-------------------------------------- DEFAULT Constraint -------------------------------
+// - Add a default constraint when create table.
+-- CREATE TABLE products(
+-- 		product_id INT,
+-- 		product_name VARCHAR(25),
+--      product_price DECIMAL(4, 2) NOT NULL DEFAULT 0.00
+-- );
+
+// - Add a check constraint later in the table.
+-- ALTER TABLE products
+-- ALTER product_price SET DEFAULT 0.00;
+
+-- INSERT INTO products (product_id, product_name)
+-- VALUES  (104, "straw"),
+-- 		   (105, "napkin");
+-- SELECT * FROM products
