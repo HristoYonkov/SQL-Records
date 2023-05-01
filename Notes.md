@@ -60,18 +60,36 @@
 -- SELECT * FROM employees;
 
 -------------------------- Auto Commit, Commit, Rollback ---------------------
--- SET AUTOCOMMIT = OFF; - Default on. Manually create savepoint when we need!
--- COMMIT; - Creating a safepoint.
--- ROLLBACK; - Load last savepoint
+-- SET AUTOCOMMIT = OFF; // - Default on. Manually create savepoint when we need!
+-- COMMIT; // - Creating a safepoint.
+-- ROLLBACK; // - Load last savepoint
 -- DELETE FROM employeescoppy;
 -- SELECT * FROM employeescoppy;
 
 ------------------------- CURRENT_DATE() && CURRENT_TIME() -------------------
 -- CREATE TABLE test(
--- 	my_date DATE,
+-- 	   my_date DATE,
 --     my_time TIME,
 --     my_datetime DATETIME
 -- );
 -- INSERT INTO test
 -- VALUES(CURRENT_DATE() + 1, CURRENT_TIME(), NOW());
 -- SELECT * FROM test;
+
+----------------------------------- UNIQUE Constraint ------------------------
+-- CREATE TABLE products(
+-- 		product_id INT,
+-- 		product_name VARCHAR(25) UNIQUE, // - You can add constraint when creating table, or later!
+--      product_price DECIMAL(4, 2)
+-- );
+
+-- ALTER TABLE products
+-- ADD CONSTRAINT
+-- UNIQUE(product_name); // - Add constraint later.
+
+-- INSERT INTO products
+-- VALUES  (100, "Pizza", 12.50),
+-- 		(101, "Juice", 2.00), 
+-- 		(102, "Ice Cream", 4.50);
+-- SELECT * FROM products;
+
