@@ -151,3 +151,20 @@
 -- VALUES  (104, "straw"),
 -- 		   (105, "napkin");
 -- SELECT * FROM products
+
+-------------------------------------- PRIMARY KEY Constraint ---------------------------
+// Commonly used as Unique identyfire!
+// Adding a primary key when creating a table
+-- CREATE TABLE transactions(
+-- 	transaction_id INT PRIMARY KEY,
+--     amount DECIMAL(5, 2)
+-- );
+
+// Adding a primary key to already existing tables.
+-- ALTER TABLE transactions
+-- ADD CONSTRAINT
+-- PRIMARY KEY(transaction_id);
+
+-- INSERT INTO transactions
+-- VALUES(1001, 3.58);
+-- SELECT * FROM transactions;
