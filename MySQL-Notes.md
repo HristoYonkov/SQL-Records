@@ -60,13 +60,13 @@
 -- SELECT * FROM employees;
 
 -------------------------- Auto Commit, Commit, Rollback ---------------------
-// Default on. Manually create savepoint when we need!
+<!-- // Default on. Manually create savepoint when we need! -->
 -- SET AUTOCOMMIT = OFF;
 
-// Creating a safepoint.
+<!-- // Creating a safepoint. -->
 -- COMMIT;
 
-// Load last savepoint.
+<!-- // Load last savepoint. -->
 -- ROLLBACK;
 -- DELETE FROM employeescoppy;
 -- SELECT * FROM employeescoppy;
@@ -84,13 +84,13 @@
 ----------------------------------- UNIQUE Constraint ------------------------
 -- CREATE TABLE products(
 -- 		product_id INT,
--- 		product_name VARCHAR(25) UNIQUE, // - You can add constraint when creating table, or later!
+-- 		product_name VARCHAR(25) UNIQUE, <!-- You can add constraint when creating table, or later!
 --      product_price DECIMAL(4, 2)
 -- );
 
 -- ALTER TABLE products
 -- ADD CONSTRAINT
--- UNIQUE(product_name); // - Add constraint later.
+-- UNIQUE(product_name); <!-- Add constraint later.
 
 -- INSERT INTO products
 -- VALUES  (100, "Pizza", 12.50),
@@ -102,18 +102,18 @@
 -- CREATE TABLE products(
 -- 		product_id INT,
 -- 		product_name VARCHAR(25),
---      product_price DECIMAL(4, 2) NOT NULL // - Add it when creating a table.
+--      product_price DECIMAL(4, 2) NOT NULL <!-- Add it when creating a table.
 -- );
 
 -- ALTER TABLE products
--- MODIFY product_price DECIMAL(4, 2) NOT NULL; // - Or add it later.
+-- MODIFY product_price DECIMAL(4, 2) NOT NULL; <!-- Or add it later.
 
 -- INSERT INTO products
--- VALUES(103, "Mocolate", NULL); // - This will not create the row you can add 0 value.
+-- VALUES(103, "Mocolate", NULL); <!-- This will not create the row you can add 0 value.
 -- SELECT * FROM products;
 
 -------------------------------------- CHECK Constraint -----------------------------------
-// - Add a check constraint when create table.
+<!-- // - Add a check constraint when create table. -->
 -- CREATE TABLE employees (
 -- 	employee_id INT,
 --     first_name VARCHAR(50),
@@ -123,27 +123,27 @@
 -- 	   CONSTRAINT chk_hourly_pay CHECK (hourly_pay  >= 10.00)
 -- );
 
-// - Insert CHECK constraint later in the table.
+<!-- // - Insert CHECK constraint later in the table. -->
 -- ALTER TABLE employees
 -- ADD CONSTRAINT chk_hourlt_pay CHECK (hourly_pay  >= 10.00);
 
-// This will throw check error.
+<!-- // This will throw check error. -->
 -- INSERT INTO employees
 -- VALUES (6, "Sheldon", "Plankton", "asda@abv.bg", 5.00, "2023-01-07");
 
-// This will drop the check constraint!
+<!-- // This will drop the check constraint! -->
 -- ALTER TABLE employees
 -- DROP CHECK chk_hourly_pay;
 
 -------------------------------------- DEFAULT Constraint -------------------------------
-// - Add a default constraint when create table.
+<!-- // - Add a default constraint when create table. -->
 -- CREATE TABLE products(
 -- 		product_id INT,
 -- 		product_name VARCHAR(25),
 --      product_price DECIMAL(4, 2) NOT NULL DEFAULT 0.00
 -- );
 
-// - Add a check constraint later in the table.
+<!-- // - Add a check constraint later in the table. -->
 -- ALTER TABLE products
 -- ALTER product_price SET DEFAULT 0.00;
 
@@ -153,14 +153,14 @@
 -- SELECT * FROM products
 
 -------------------------------------- PRIMARY KEY Constraint ---------------------------
-// Commonly used as Unique identifier. The value can not be null and needs to be unique!
-// Adding a primary key when creating a table
+<!-- // Commonly used as Unique identifier. The value can not be null and needs to be unique!
+Adding a primary key when creating a table -->
 -- CREATE TABLE transactions(
 -- 	transaction_id INT PRIMARY KEY,
 --     amount DECIMAL(5, 2)
 -- );
 
-// Adding a primary key to already existing tables.
+<!-- // Adding a primary key to already existing tables. -->
 -- ALTER TABLE transactions
 -- ADD CONSTRAINT
 -- PRIMARY KEY(transaction_id);
@@ -170,8 +170,8 @@
 -- SELECT * FROM transactions;
 
 -------------------------------------- AUTO_INCREMENT Attribute ---------------------------
-// Can only be applied to column that has a key, and its uset to auto increment the column key.
-// Creating a primary key in table, by default is 1.
+<!-- Can only be applied to column that has a key, and its uset to auto increment the column key.
+Creating a primary key in table, by default is 1. -->
 CREATE TABLE transactions (
 	transaction_id INT PRIMARY KEY AUTO_INCREMENT,
     amount DECIMAL(5, 2)
@@ -182,11 +182,59 @@ CREATE TABLE transactions (
 
 -- DELETE FROM transactions;
 
-// Add different value for AUTO_INCREMENT.
+<!-- // Add different value for AUTO_INCREMENT. -->
 -- ALTER TABLE transactions
 -- AUTO_INCREMENT = 100;
 
-// THis new value will start from 100!
+<!-- // THis new value will start from 100! -->
 -- INSERT INTO transactions (amount)
 -- VALUES (0.99);
 -- select * from transactions
+
+----------------------------------- FOREIGN KEYS Constraint -----------------------------
+<!-- Primary key from one table can be found into another table, using a foreign key
+it establishes a link between two tables. Also prevent any actions wich will destroy the link
+between tables. -->
+-- CREATE TABLE customers (
+-- 	customer_id INT PRIMARY KEY AUTO_INCREMENT,
+--     first_name VARCHAR(50),
+--     last_name VARCHAR(50)
+-- );
+
+-- INSERT INTO customers (first_name, last_name)
+-- VALUES  ("Pavel", "Dimitrov"),
+-- 		("Hristo", "Yonkov"),
+--         ("Peter", "Petrov");
+
+<!-- Create table with foreign key constraint. -->
+-- CREATE TABLE transactions (
+-- 	transaction_id INT PRIMARY KEY AUTO_INCREMENT,
+--     amount DECIMAL(5, 2),
+--     customer_id INT,
+--     FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
+-- );
+
+<!-- Drops foreign key constraint from a table. -->
+-- ALTER TABLE transactions
+-- DROP FOREIGN KEY transactions_ibfk_1;
+
+<!-- Changing and adding later a new name to foreign key into table. -->
+-- ALTER TABLE transactions
+-- ADD CONSTRAINT fk_customer_id
+-- FOREIGN KEY(customer_id) REFERENCES customers(customer_id);
+
+<!-- Increase the number of foreign key. -->
+-- ALTER TABLE transactions
+-- AUTO_INCREMENT = 100;
+
+-- INSERT INTO transactions (amount, customer_id)
+-- VALUES  (3.99, 3),
+-- 		(2.57, 2), 
+--         (0.99, 1), 
+--         (2.50, 3),
+--         (1.60, 2);
+
+<!-- You can`t delete when there is foreign key constraint -->
+-- DELETE FROM customers WHERE customer_id = 3;
+
+-- SELECT * FROM transactions
