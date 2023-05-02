@@ -143,13 +143,14 @@
 --      product_price DECIMAL(4, 2) NOT NULL DEFAULT 0.00
 -- );
 
-<!-- // - Add a check constraint later in the table. -->
+<!-- // - Add a DEFAULT constraint later in the table. -->
 -- ALTER TABLE products
 -- ALTER product_price SET DEFAULT 0.00;
 
 -- INSERT INTO products (product_id, product_name)
 -- VALUES  (104, "straw"),
 -- 		   (105, "napkin");
+
 -- SELECT * FROM products
 
 -------------------------------------- PRIMARY KEY Constraint ---------------------------
