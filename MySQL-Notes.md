@@ -153,7 +153,7 @@
 -- SELECT * FROM products
 
 -------------------------------------- PRIMARY KEY Constraint ---------------------------
-// Commonly used as Unique identyfire!
+// Commonly used as Unique identifier. The value can not be null and needs to be unique!
 // Adding a primary key when creating a table
 -- CREATE TABLE transactions(
 -- 	transaction_id INT PRIMARY KEY,
@@ -168,3 +168,25 @@
 -- INSERT INTO transactions
 -- VALUES(1001, 3.58);
 -- SELECT * FROM transactions;
+
+-------------------------------------- AUTO_INCREMENT Attribute ---------------------------
+// Can only be applied to column that has a key, and its uset to auto increment the column key.
+// Creating a primary key in table, by default is 1.
+CREATE TABLE transactions (
+	transaction_id INT PRIMARY KEY AUTO_INCREMENT,
+    amount DECIMAL(5, 2)
+);
+
+-- INSERT INTO transactions (amount)
+-- VALUES (3.99);
+
+-- DELETE FROM transactions;
+
+// Add different value for AUTO_INCREMENT.
+-- ALTER TABLE transactions
+-- AUTO_INCREMENT = 100;
+
+// THis new value will start from 100!
+-- INSERT INTO transactions (amount)
+-- VALUES (0.99);
+-- select * from transactions
