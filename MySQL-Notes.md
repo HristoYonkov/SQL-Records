@@ -239,3 +239,23 @@ between tables. -->
 -- DELETE FROM customers WHERE customer_id = 3;
 
 -- SELECT * FROM transactions
+
+-------------------------------------- JOINS Clauses ------------------------------------
+<!-- Joins are used to combine rows from two or more tables based on their related column
+between them, such as FOREIGN KEY. They can be INER, LEFT and RIGHT joins. -->
+
+<!-- Displays only mathed conditions. -->
+-- SELECT * FROM transactions
+-- INNER JOIN customers
+-- ON transactions.customer_id = customers.customer_id;
+
+<!-- Pick only columns that we need! -->
+-- SELECT transaction_id, amount, first_name, last_name FROM 
+-- transactions INNER JOIN customers
+-- ON transactions.customer_id = customers.customer_id;
+
+<!-- Example of RIGHT JOIN, same as left. Displays whole rows according to wich table are joined,
+left or right. -->
+-- SELECT * FROM 
+-- transactions RIGHT JOIN customers
+-- ON transactions.customer_id = customers.customer_id;
