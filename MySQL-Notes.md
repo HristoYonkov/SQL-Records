@@ -259,3 +259,28 @@ left or right. -->
 -- SELECT * FROM 
 -- transactions RIGHT JOIN customers
 -- ON transactions.customer_id = customers.customer_id;
+
+----------------------------------------- FUNCTIONS -------------------------------------
+<!-- Calculate how many transactions are in the amount column. -->
+-- SELECT COUNT(amount) AS "today's transactions"
+-- FROM transactions;
+
+<!-- Takes the maximum value in amount column. -->
+-- SELECT MAX(amount) AS "Maximum transaction"
+-- FROM transactions;
+
+<!-- Takes the minimum value in amount column. -->
+-- SELECT MIN(amount) AS "Minimum transaction"
+-- FROM transactions;
+
+<!-- Takes the average value in amount column. -->
+-- SELECT AVG(amount) AS "Average transaction"
+-- FROM transactions;
+
+<!-- Sum all values in amount column. -->
+-- SELECT SUM(amount) AS "Sum all transaction"
+-- FROM transactions;
+
+<!-- Concatenate two column values. -->
+-- SELECT CONCAT(first_name, " ", last_name) AS full_name
+-- FROM employees;
