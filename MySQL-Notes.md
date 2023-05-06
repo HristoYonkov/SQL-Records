@@ -305,3 +305,32 @@ left or right. -->
 -- WHERE job IN ("Programmer", "Senior Programmer");
 
 -------------------------------- %, _ Wild card characters --------------------------------
+<!-- Used to subsitude (замести) one or more characters in a string.  -->
+-- SELECT * FROM employees
+-- WHERE first_name LIKE "P%";
+
+-- SELECT * FROM employees
+-- WHERE hire_date LIKE "2023%";
+
+-- SELECT * FROM employees
+-- WHERE first_name LIKE "%o";
+
+-- SELECT * FROM employees
+-- WHERE first_name LIKE "pe%";
+
+<!-- Underscore (_), character represent 1 random letter. -->
+-- SELECT * FROM employees
+-- WHERE job LIKE "_rogrammer";
+
+-- SELECT * FROM employees
+-- WHERE job LIKE "_rogramme_";
+
+-- SELECT * FROM employees
+-- WHERE hire_date LIKE "____-05-__";
+
+-- SELECT * FROM employees
+-- WHERE hire_date LIKE "____-__-03";
+
+<!-- We can combine them toghether! -->
+-- SELECT * FROM employees
+-- WHERE job LIKE "_r%";
