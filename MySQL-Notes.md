@@ -349,3 +349,20 @@ based on wich column we list. -->
 
 -- SELECT * FROM transactions
 -- ORDER BY amount ASC, customer_id DESC;
+
+-------------------------------------- LIMIT Clause -------------------------------------
+<!-- LIMIT clause is used to limit the number of records. -->
+<!-- Usefull if you`re working with a lot of data. -->
+<!-- Can be used to display large data on different pages (pagination). -->
+-- SELECT * FROM customers
+-- LIMIT 2;
+
+-- SELECT * FROM customers
+-- ORDER BY first_name LIMIT 2;
+
+-- SELECT * FROM customers
+-- ORDER BY first_name DESC LIMIT 2;
+
+<!-- First number is the offset, second one is how many should table display. -->
+-- SELECT * FROM customers
+-- LIMIT 2, 1;
