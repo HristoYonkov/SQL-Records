@@ -303,3 +303,5 @@ left or right. -->
 
 -- SELECT * FROM employees
 -- WHERE job IN ("Programmer", "Senior Programmer");
+
+-------------------------------- %, _ Wild card characters --------------------------------
