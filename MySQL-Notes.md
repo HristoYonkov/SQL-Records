@@ -284,3 +284,22 @@ left or right. -->
 <!-- Concatenate two column values. -->
 -- SELECT CONCAT(first_name, " ", last_name) AS full_name
 -- FROM employees;
+
+----------------------------- AND, OR, NOT, BETWEEN, IN Logical Operators ------------------------
+-- SELECT * FROM employees
+-- WHERE hire_date < "2023-05-07" AND job = "Senior Programmer";
+
+-- SELECT * FROM employees
+-- WHERE job = "Team Lead" OR job = "Senior Programmer";
+
+-- SELECT * FROM employees
+-- WHERE NOT job = "Team Lead" AND NOT job = "Senior Programmer";
+
+-- SELECT * FROM employees
+-- WHERE NOT job = "Team Lead";
+
+-- SELECT * FROM employees
+-- WHERE hire_date BETWEEN "2023-05-07" AND "2023-09-09";
+
+-- SELECT * FROM employees
+-- WHERE job IN ("Programmer", "Senior Programmer");
