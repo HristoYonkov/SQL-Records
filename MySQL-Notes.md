@@ -350,7 +350,7 @@ based on wich column we list. -->
 -- SELECT * FROM transactions
 -- ORDER BY amount ASC, customer_id DESC;
 
--------------------------------------- LIMIT Clause -------------------------------------
+------------------------------------ LIMIT Clause ---------------------------------------
 <!-- LIMIT clause is used to limit the number of records. -->
 <!-- Usefull if you`re working with a lot of data. -->
 <!-- Can be used to display large data on different pages (pagination). -->
@@ -366,3 +366,20 @@ based on wich column we list. -->
 <!-- First number is the offset, second one is how many should table display. -->
 -- SELECT * FROM customers
 -- LIMIT 2, 1;
+
+---------------------------------- UNION Operator ----------------------------------------
+<!-- The UNION operator combines the result of two or more SELECT statements -->
+<!-- It wont work if the two tables have a different amount of columns! -->
+-- SELECT * FROM employees
+-- UNION
+-- SELECT * FROM customers
+
+<!-- This will exclude duplicates! -->
+-- SELECT first_name, last_name FROM employees
+-- UNION
+-- SELECT first_name, last_name FROM customers;
+
+<!-- This will include duplicates! -->
+-- SELECT first_name, last_name FROM employees
+-- UNION ALL
+-- SELECT first_name, last_name FROM customers;
