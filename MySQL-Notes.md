@@ -334,3 +334,18 @@ left or right. -->
 <!-- We can combine them toghether! -->
 -- SELECT * FROM employees
 -- WHERE job LIKE "_r%";
+
+----------------------------------- ORDER BY Clasuse -----------------------------------
+<!-- ORDER BY clause sorts the results of a query in either ascending or descending order
+based on wich column we list. -->
+-- SELECT * FROM employees
+-- ORDER BY first_name;
+
+-- SELECT * FROM employees
+-- ORDER BY first_name DESC;
+
+-- SELECT * FROM employees
+-- ORDER BY hire_date ASC;
+
+-- SELECT * FROM transactions
+-- ORDER BY amount ASC, customer_id DESC;
