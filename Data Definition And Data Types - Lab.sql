@@ -28,3 +28,7 @@ ADD COLUMN middle_name VARCHAR(50) NOT NULL;
 ALTER TABLE products
 ADD CONSTRAINT fk_categories_id 
 FOREIGN KEY(category_id) REFERENCES categories(id);
+
+-- 05. Modifying Columns
+ALTER TABLE employees
+MODIFY COLUMN middle_name VARCHAR(100);
