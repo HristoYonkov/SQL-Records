@@ -11,7 +11,13 @@ CREATE TABLE towns (
 );
 
 -- 2. Alter Minions Table
-
+ALTER TABLE towns
+RENAME COLUMN town_id TO id;
+----------------------------
+ALTER TABLE minions
+ADD COLUMN town_id INT,
+ADD CONSTRAINT fk_minions_towns FOREIGN KEY minions(town_id)
+REFERENCES towns(id);
 
 -- 3. Insert Records in Both Tables
 
