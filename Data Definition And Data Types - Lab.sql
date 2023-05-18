@@ -23,3 +23,8 @@ VALUES (1, "Stamat", "Stamatov"), (2, "Pavel", "Dimitrov"), (3, "Peter", "Petrov
 -- 03. Alter Tables
 ALTER TABLE employees
 ADD COLUMN middle_name VARCHAR(50) NOT NULL;
+
+-- 04. Adding Constraints
+ALTER TABLE products
+ADD CONSTRAINT fk_categories_id 
+FOREIGN KEY(category_id) REFERENCES categories(id);
