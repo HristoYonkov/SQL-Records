@@ -34,3 +34,39 @@ DROP TABLE minions;
 DROP TABLE towns;
 
 -- 6. Create Table People
+CREATE TABLE people (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(200) NOT NULL,
+    picture BLOB,
+    height DOUBLE(5, 2),
+    weight DOUBLE(5, 2),
+    gender VARCHAR(1) NOT NULL,
+    birthdate DATE NOT NULL,
+    biography TEXT
+);
+
+INSERT INTO people (name, gender, birthdate)
+VALUES ('Hristo', 'm', DATE(NOW())),
+('Ani', 'f', DATE(NOW())),
+('Stoqn', 'm', DATE(NOW())),
+('Pavel', 'm', DATE(NOW())),
+('Emiliq', 'f', DATE(NOW()));
+
+-- 7. Create Table Users
+CREATE TABLE users (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(30) NOT NULL UNIQUE,
+    password VARCHAR(26) NOT NULL,
+    profile_picture BLOB,
+    last_login_time DATETIME,
+    is_deleted BOOLEAN
+);
+
+INSERT INTO users (username, password)
+VALUES ('Ico', '123123123'),
+('Pavel', '123123'),
+('Meter', '123123'),
+('Hasan', '123123'),
+('Kakasho', '123123');
+
+-- 8. Change Primary Key
