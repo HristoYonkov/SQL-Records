@@ -78,3 +78,98 @@ ADD CONSTRAINT pk_users PRIMARY KEY users(id, username);
 ALTER TABLE users
 CHANGE COLUMN last_login_time
 last_login_time DATETIME DEFAULT NOW();
+
+-- 10. Set Unique Field
+ALTER TABLE users
+DROP PRIMARY KEY,
+ADD CONSTRAINT pk_users
+PRIMARY KEY users(id),
+CHANGE COLUMN username
+username VARCHAR(30) UNIQUE;
+
+-- 11. Movies Database
+CREATE DATABASE movies;
+USE movies;
+
+CREATE TABLE directors (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    director_name VARCHAR(50) NOT NULL,
+    notes TEXT
+);
+INSERT INTO directors (director_name, notes)
+VALUES ('Pavel', 'Dobyr v bqganeto.'),
+('Pavel', 'Dobyr v bqganeto.'),
+('Pavel', 'Dobyr v bqganeto.'),
+('Pavel', 'Dobyr v bqganeto.'),
+('Pavel', 'Dobyr v bqganeto.');
+
+CREATE TABLE genres (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    genre_name VARCHAR(20) NOT NULL,
+    notes TEXT
+);
+INSERT INTO genres (genre_name, notes)
+VALUES ('Actions', 'Actions are common genre.'),
+('Actions', 'Actions are common genre.'),
+('Actions', 'Actions are common genre.'),
+('Actions', 'Actions are common genre.'),
+('Actions', 'Actions are common genre.');
+
+CREATE TABLE categories (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    category_name VARCHAR(20) NOT NULL,
+    notes TEXT
+);
+INSERT INTO categories (category_name, notes)
+VALUES ('Igralen', 'Igralnite filmi sa za predpochitane'),
+('Igralen', 'Igralnite filmi sa za predpochitane'),
+('Igralen', 'Igralnite filmi sa za predpochitane'),
+('Igralen', 'Igralnite filmi sa za predpochitane'),
+('Igralen', 'Igralnite filmi sa za predpochitane');
+
+CREATE TABLE movies (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(50) NOT NULL,
+    director_id INT,
+    copyright_year YEAR,
+    length DOUBLE(10 , 2 ),
+    genre_id INT,
+    category_id INT,
+    rating DOUBLE(3 , 2 ),
+    notes TEXT
+);
+INSERT INTO movies (title, director_id, genre_id, category_id)
+VALUES ('Iron Man', 1, 2, 3),
+('Iron Man', 1, 2, 5),
+('Iron Man', 1, 2, 4),
+('Iron Man', 1, 2, 3),
+('Iron Man', 1, 2, 3);
+
+-- 12. Car Rental Database
+
+
+-- 13. Basic Insert
+
+
+-- 14. Basic Select All Fields
+SELECT * FROM towns;
+SELECT * FROM departments;
+SELECT * FROM employees;
+
+-- 15. Basic Select All Fields and Order Them
+SELECT * FROM towns AS t ORDER BY t.name ASC;
+SELECT * FROM departments AS d ORDER BY d.name ASC;
+SELECT * FROM employees AS e ORDER BY e.salary DESC;
+
+-- 16. Basic Select Some Fields
+SELECT t.name FROM towns AS t ORDER BY t.name ASC;
+
+SELECT  d.name FROM departments AS d ORDER BY d.name ASC;
+
+SELECT e.first_name, e.last_name, e.job_title, e.salary
+FROM employees AS e ORDER BY e.salary ASC;
+
+-- 17. Increase Employees Salary
+UPDATE employees
+SET salary = salary * 1.1;
+SELECT salary FROM employees;
