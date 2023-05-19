@@ -70,3 +70,11 @@ VALUES ('Ico', '123123123'),
 ('Kakasho', '123123');
 
 -- 8. Change Primary Key
+ALTER TABLE users
+DROP PRIMARY KEY,
+ADD CONSTRAINT pk_users PRIMARY KEY users(id, username);
+
+-- 9. Set Default Value of a Field
+ALTER TABLE users
+CHANGE COLUMN last_login_time
+last_login_time DATETIME DEFAULT NOW();

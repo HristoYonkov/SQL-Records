@@ -173,10 +173,10 @@ Adding a primary key when creating a table -->
 -------------------------------------- AUTO_INCREMENT Attribute ---------------------------
 <!-- Can only be applied to column that has a key, and its uset to auto increment the column key.
 Creating a primary key in table, by default is 1. -->
-CREATE TABLE transactions (
-	transaction_id INT PRIMARY KEY AUTO_INCREMENT,
-    amount DECIMAL(5, 2)
-);
+-- CREATE TABLE transactions (
+-- transaction_id INT PRIMARY KEY AUTO_INCREMENT,
+-- amount DECIMAL(5, 2)
+-- );
 
 -- INSERT INTO transactions (amount)
 -- VALUES (3.99);
