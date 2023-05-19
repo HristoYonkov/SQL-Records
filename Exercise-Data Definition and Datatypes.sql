@@ -7,7 +7,7 @@ CREATE TABLE minions (
 
 CREATE TABLE towns (
     town_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50),
+    name VARCHAR(50)
 );
 
 -- 2. Alter Minions Table
@@ -27,6 +27,6 @@ INSERT INTO minions (id, name, age, town_id)
 VALUES(1, 'Kevin', 22, 1), (2, 'Bob', 15, 3), (3, 'Steward', NULL, 2);
 
 -- 4. Truncate Table Minions
-
+TRUNCATE TABLE minions;
 
 -- 5. Drop All Tables
