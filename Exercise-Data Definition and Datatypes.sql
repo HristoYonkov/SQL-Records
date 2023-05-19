@@ -30,3 +30,7 @@ VALUES(1, 'Kevin', 22, 1), (2, 'Bob', 15, 3), (3, 'Steward', NULL, 2);
 TRUNCATE TABLE minions;
 
 -- 5. Drop All Tables
+DROP TABLE minions;
+DROP TABLE towns;
+
+-- 6. Create Table People
