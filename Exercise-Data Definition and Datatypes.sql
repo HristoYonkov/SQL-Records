@@ -146,7 +146,78 @@ VALUES ('Iron Man', 1, 2, 3),
 ('Iron Man', 1, 2, 3);
 
 -- 12. Car Rental Database
+CREATE DATABASE car_rental;
+USE car_rental;
+CREATE TABLE categories (
+	id INT PRIMARY KEY AUTO_INCREMENT, 
+    category NVARCHAR(50) NOT NULL, 
+    daily_rate DECIMAL(5), 
+    weekly_rate DECIMAL(5), 
+    monthly_rate DECIMAL(5), 
+    weekend_rate DECIMAL(5)
+);
+INSERT INTO categories(category)
+VALUES ('Sedan'), ('Hatchback'), ('Coupe');
 
+CREATE TABLE cars (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    plate_number NVARCHAR(10) NOT NULL UNIQUE,
+    make NVARCHAR(30),
+    model NVARCHAR(30),
+    car_year INT,
+    category_id INT,
+    doors INT,
+    picture BLOB,
+    car_condition VARCHAR(30),
+    available BOOLEAN,
+    FOREIGN KEY (category_id)
+    REFERENCES categories(id)
+);
+INSERT INTO cars(plate_number)
+VALUES ('2314'), ('4321'), ('1234');
+
+CREATE TABLE employees (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	title VARCHAR(50),
+    notes TEXT
+);
+INSERT INTO employees (first_name, last_name)
+VALUES ('Ivan', 'Ivanov'), ('Dimo', 'Petrov'), ('Pavel', 'Dimitrov');
+
+CREATE TABLE customers (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	driver_license_number INT NOT NULL,
+	full_name VARCHAR(50),
+    address VARCHAR(50),
+    city VARCHAR(50),
+    zip_code INT,
+    notes TEXT
+);
+INSERT INTO customers(driver_license_number)
+VALUES ('123312'), ('23112'), ('32312');
+
+CREATE TABLE rental_orders (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    employee_id INT NOt NULL,
+    customer_id INT NOT NULL,
+    car_id INT,
+    car_condition VARCHAR(50),
+    tank_level INT,
+	kilometrage_start INT,
+    kilometrage_end INT,
+    total_kilometrage INT,
+    start_date DATE,
+    end_date DATE,
+	total_days INT,
+	rate_applied INT,
+	tax_rate INT,
+    order_status VARCHAR(50),
+    notes TEXT
+);
+INSERT INTO rental_orders(employee_id, customer_id)
+VALUES (2, 3), (3, 2), (1, 1);
 
 -- 13. Basic Insert
 CREATE TABLE towns (
