@@ -32,3 +32,7 @@ SELECT * FROM employees AS e
 WHERE e.department_id = 4 AND e.salary >= 1000;
 
 -- 06. Delete from Table
+DELETE FROM employees
+WHERE department_id = 1
+OR department_id = 2;
+SELECT * FROM employees ORDER BY id;
