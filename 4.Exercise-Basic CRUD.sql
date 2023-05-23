@@ -55,3 +55,45 @@ SELECT first_name, last_name FROM employees
 WHERE department_id != 4;
 
 -- 14. Sort Employees Table
+SELECT * FROM employees
+ORDER BY salary DESC,
+first_name ASC,
+last_name DESC,
+middle_name ASC;
+
+-- 15. Create View Employees with Salaries
+CREATE VIEW v_employees_salaries AS 
+SELECT first_name, last_name, salary
+FROM employees;
+
+-- 16. Create View Employees with Job Titles
+CREATE VIEW v_employees_job_titles AS
+SELECT CONCAT_WS(' ', first_name, middle_name, last_name)
+AS full_name, job_title
+FROM employees;
+
+-- 17. Distinct Job Titles
+SELECT DISTINCT job_title FROM employees
+ORDER BY job_title;
+
+-- 18. Find First 10 Started Projects
+SELECT * FROM projects
+ORDER BY start_date, name LIMIT 10;
+
+-- 19. Last 7 Hired Employees
+SELECT first_name, last_name, hire_date FROM employees
+ORDER BY hire_date DESC LIMIT 7;
+
+-- 20. Increase Salaries
+
+
+-- 21. All Mountain Peaks
+
+
+-- 22. Biggest Countries by Population
+
+
+-- 23. Countries and Currency (Euro / Not Euro)
+
+
+-- 24. All Diablo Characters
