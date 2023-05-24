@@ -85,15 +85,32 @@ SELECT first_name, last_name, hire_date FROM employees
 ORDER BY hire_date DESC LIMIT 7;
 
 -- 20. Increase Salaries
-
+UPDATE employees AS e
+SET salary = salary * 1.12
+WHERE department_id IN(1, 2, 4, 11);
+SELECT salary FROM employees;
+-- solution 2 that not pass judge!
+UPDATE employees AS e
+SET salary = salary * 1.12
+WHERE department_id IN(SELECT department_id FROM departments
+WHERE name IN('Engineering', 'Tool Design', 'Marketing', 'Information Services'));
+SELECT salary FROM employees;
 
 -- 21. All Mountain Peaks
-
+SELECT peak_name FROM peaks
+ORDER BY peak_name;
 
 -- 22. Biggest Countries by Population
-
+SELECT country_name, population FROM countries
+WHERE continent_code = 'EU'
+ORDER BY population DESC,
+country_name ASC LIMIT 30;
 
 -- 23. Countries and Currency (Euro / Not Euro)
-
+SELECT 
+country_name, country_code, IF(currency_code = 'EUR', 'Euro', 'Not Euro')
+FROM countries
+ORDER BY country_name ASC;
 
 -- 24. All Diablo Characters
+SELECT name FROM characters ORDER BY name ASC;
