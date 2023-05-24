@@ -15,3 +15,6 @@ TIMESTAMPDIFF(DAY, born, died) AS 'Days Lived'
 FROM authors;
 
 -- 05. Harry Potter Books
+SELECT title FROM books
+WHERE SUBSTRING(title, 1, 12) = 'Harry Potter'
+ORDER BY id;
