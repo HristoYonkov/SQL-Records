@@ -58,3 +58,43 @@ WHERE country_name LIKE '%a%a%a%'
 ORDER BY iso_code;
 
 -- 11. Mix of Peak and River Names
+SELECT p.peak_name, r.river_name,
+LOWER(CONCAT(LEFT(p.peak_name, CHAR_LENGTH(p.peak_name) - 1),
+r.river_name)) AS mix
+FROM peaks AS p, rivers AS r
+WHERE UPPER(RIGHT(p.peak_name, 1)) = UPPER(LEFT(r.river_name, 1))
+ORDER BY mix;
+-- my solution
+SELECT p.peak_name, r.river_name,
+LOWER(CONCAT(SUBSTRING(p.peak_name, 1, CHAR_LENGTH(p.peak_name) - 1),
+r.river_name)) AS mix
+FROM peaks AS p, rivers AS r
+WHERE LOWER(SUBSTRING(peak_name, CHAR_LENGTH(peak_name), 1)) = LOWER(SUBSTRING(r.river_name, 1, 1))
+ORDER BY mix;
+
+-- 12. Games From 2011 and 2012 Year
+SELECT `name`, DATE_FORMAT(`start`, '%Y-%m-%d') AS `start`
+FROM `games`
+WHERE YEAR(`start`) IN (2011, 2012)
+ORDER BY `start`, name LIMIT 50;
+
+-- 13. User Email Providers
+SELECT `user_name`,
+SUBSTRING_INDEX(email, '@', -1) AS `email provider`
+FROM `users`
+ORDER BY `email provider`, `user_name`;
+-- second solution
+SELECT `user_name`,
+REGEXP_REPLACE(email, '.*@', '') AS `email provider`
+FROM `users`
+ORDER BY `email provider`, `user_name`;
+
+-- 14. Get Users with IP Address Like Pattern
+SELECT user_name, ip_address FROM users
+WHERE ip_address LIKE '___.1%.%.___'
+ORDER BY user_name;
+
+-- 15. Show All Games with Duration and Part of the Day
+
+
+-- 16. Orders Table
