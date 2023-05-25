@@ -46,3 +46,15 @@ WHERE YEAR(hire_date) > 2000;
 -- 09. Length of Last Name
 SELECT first_name, last_name FROM employees
 WHERE CHAR_LENGTH(last_name) = 5;
+
+-- 10. Countries Holding 'A'
+SELECT country_name, iso_code FROM countries
+WHERE (CHAR_LENGTH(country_name) -
+CHAR_LENGTH(REPLACE(LOWER(country_name), 'a', ''))) >= 3
+ORDER BY iso_code;
+-- second solution
+SELECT country_name, iso_code FROM countries
+WHERE country_name LIKE '%a%a%a%'
+ORDER BY iso_code;
+
+-- 11. Mix of Peak and River Names
