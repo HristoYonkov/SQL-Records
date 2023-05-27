@@ -86,3 +86,24 @@ WHERE department_id = 1;
 SELECT department_id, AVG(salary) AS avg_salary FROM salary_more_than_30000
 GROUP BY department_id
 ORDER BY department_id;
+
+-- 14. Employees Maximum Salaries
+SELECT department_id, MAX(salary) AS max_salary FROM employees
+GROUP BY department_id
+HAVING max_salary NOT BETWEEN 30000 AND 70000
+ORDER BY department_id;
+
+-- 15. Employees Count Salaries
+SELECT COUNT(*) AS '' FROM employees
+WHERE manager_id IS NULL;
+
+-- 16. 3rd Highest Salary
+
+
+-- 17. Salary Challenge
+
+
+-- 18. Departments Total Salaries
+SELECT department_id, SUM(salary) AS total_salary FROM employees
+GROUP BY department_id
+ORDER BY department_id;
