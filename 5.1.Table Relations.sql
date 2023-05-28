@@ -24,3 +24,22 @@ SELECT driver_id, vehicle_type,
 (SELECT CONCAT(first_name, ' ', last_name) FROM campers AS T1
 	WHERE t1.id = t2.driver_id) AS driver_name
 FROM vehicles AS t2;
+
+-- 3. SoftUni Hiking
+
+
+-- 4. Delete Mountains
+CREATE table mountains (
+	id INT AUTO_INCREMENT,
+    name VARCHAR(50),
+	CONSTRAINT pk_mountains_id PRIMARY KEY(id)
+);
+
+CREATE table peaks (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    mountain_id INT,
+    CONSTRAINT fk_mountain_id
+    FOREIGN KEY(mountain_id) REFERENCES mountains (id)
+    ON DELETE CASCADE
+);
