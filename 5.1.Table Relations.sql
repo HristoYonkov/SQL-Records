@@ -26,7 +26,10 @@ SELECT driver_id, vehicle_type,
 FROM vehicles AS t2;
 
 -- 3. SoftUni Hiking
-
+SELECT 
+    starting_point, end_point, leader_id,
+    CONCAT(first_name, ' ', last_name) AS leader_name
+FROM routes JOIN campers ON leader_id = campers.id
 
 -- 4. Delete Mountains
 CREATE table mountains (
