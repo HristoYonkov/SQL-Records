@@ -68,10 +68,61 @@ VALUES (1, 101),
 (2, 103);
 
 -- 04. Self-Referencing
+CREATE TABLE teachers (
+teacher_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL,
+manager_id INT
+) AUTO_INCREMENT = 101;
 
+INSERT INTO teachers (name)
+VALUES ('John');
+
+INSERT INTO teachers (name, manager_id)
+VALUES ('Maya', 106), ('Silvia', 106),
+('Ted', 105), ('Mark', 101), ('Greta', 101);
+
+ALTER TABLE teachers
+ADD CONSTRAINT FOREIGN KEY (manager_id) REFERENCES teachers (teacher_id);
 
 -- 05. Online Store Database
+CREATE TABLE cities (
+city_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50)
+);
 
+CREATE TABLE item_types (
+item_type_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50)
+);
+
+CREATE TABLE customers (
+customer_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50),
+birthday DATE,
+city_id INT,
+FOREIGN KEY (city_id) REFERENCES cities (city_id)
+);
+
+CREATE TABLE items (
+item_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50),
+item_type_id INT,
+FOREIGN KEY (item_type_id) REFERENCES item_types (item_type_id)
+);
+
+CREATE TABLE orders (
+order_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+customer_id INT,
+FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
+);
+
+CREATE TABLE order_items (
+order_id INT,
+item_id INT,
+PRIMARY KEY (order_id, item_id),
+FOREIGN KEY (order_id) REFERENCES orders (order_id),
+FOREIGN KEY (item_id) REFERENCES items (item_id)
+);
 
 -- 06. University Database
 CREATE TABLE subjects (
@@ -109,3 +160,12 @@ CONSTRAINT pk_agenda_subjects FOREIGN KEY (subject_id) REFERENCES subjects (subj
 );
 
 -- 09. Peaks in Rila
+SELECT 
+    mountain_range, p.peak_name, p.elevation AS peak_elevation
+FROM
+    mountains AS m
+        JOIN
+    peaks AS p ON m.id = p.mountain_id
+WHERE
+    mountain_range = 'Rila'
+ORDER BY p.elevation DESC;
