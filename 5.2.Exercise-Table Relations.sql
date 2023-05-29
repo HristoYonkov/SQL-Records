@@ -36,3 +36,44 @@ CREATE TABLE models (
 INSERT INTO models
 VALUES (101, 'X1', 1), (102, 'i6', 1), (103, 'Model S', 2),
 (104, 'Model X', 2), (105, 'Model 3', 2), (106, 'Nova', 3);
+
+-- 03. Many-To-Many Relationship
+CREATE TABLE students (
+student_id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE exams (
+	exam_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50) NOT NULL
+) AUTO_INCREMENT = 101;
+
+CREATE TABLE students_exams (
+	student_id INT,
+    exam_id INT,
+    CONSTRAINT pk_students_exams PRIMARY KEY (student_id, exam_id),
+    CONSTRAINT fk__students_exams__students FOREIGN KEY (student_id) REFERENCES students (student_id),
+    CONSTRAINT fk__students_exams__exams FOREIGN KEY (exam_id) REFERENCES exams (exam_id)
+);
+
+INSERT INTO students (name) VALUES ('Mila'), ('Toni'), ('Ron');
+INSERT INTO exams (name)  VALUES ('Spring MVC'), ('Neo4j'), ('Oracle 11g');
+
+INSERT INTO students_exams 
+VALUES (1, 101),
+(1, 102),
+(2, 101),
+(3, 103),
+(2, 102),
+(2, 103);
+
+-- 04. Self-Referencing
+
+
+-- 05. Online Store Database
+
+
+-- 06. University Database
+
+
+-- 09. Peaks in Rila
