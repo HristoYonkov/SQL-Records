@@ -26,3 +26,8 @@ FROM employees
 WHERE manager_id IS NULL;
 
 -- 4. High Salary
+SELECT COUNT(*) AS count
+FROM employees
+WHERE salary > (
+SELECT AVG(salary) FROM employees
+);
