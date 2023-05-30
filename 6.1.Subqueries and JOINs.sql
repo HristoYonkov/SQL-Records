@@ -21,6 +21,8 @@ WHERE towns.name IN('San Francisco', 'Sofia', 'Carnation')
 ORDER BY town_id, address_id;
 
 -- 3. Employees Without Managers
-
+SELECT employee_id, first_name, last_name, department_id, salary
+FROM employees
+WHERE manager_id IS NULL;
 
 -- 4. High Salary
