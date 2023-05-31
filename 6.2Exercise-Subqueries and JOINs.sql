@@ -143,13 +143,36 @@ WHERE
 ORDER BY p.elevation DESC;
 
 -- 13. Count Mountain Ranges
-
+SELECT 
+    c.country_code, COUNT(mc.mountain_id) AS mountains_range_count
+FROM countries AS c
+JOIN mountains_countries AS mc ON c.country_code = mc.country_code
+GROUP BY c.country_code
+HAVING c.country_code IN ('BG', 'US', 'RU')
+ORDER BY mountains_range_count DESC;
 
 -- 14. Countries with Rivers
-
+SELECT c.country_name, r.river_name FROM countries AS c
+LEFT JOIN countries_rivers AS cr ON c.country_code = cr.country_code
+LEFT JOIN rivers AS r ON r.id = cr.river_id
+WHERE c.continent_code = 'AF'
+ORDER BY c.country_name LIMIT 5;
 
 -- 15. *Continents and Currencies
-
+SELECT 
+    c.continent_code,
+	c.currency_code,
+    COUNT(*) AS currency_usage
+FROM
+    countries AS c
+GROUP BY continent_code, currency_code
+HAVING currency_usage > 1 
+AND currency_usage = (SELECT COUNT(*) AS count_of_currencies
+						FROM countries AS c2
+						WHERE c2.continent_code = c.continent_code
+						GROUP BY c2.currency_code
+						ORDER BY count_of_currencies DESC LIMIT 1)
+ORDER BY continent_code, currency_code;
 
 -- 16. Countries without any Mountains
 
