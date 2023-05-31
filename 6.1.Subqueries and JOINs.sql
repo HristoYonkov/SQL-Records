@@ -31,3 +31,26 @@ FROM employees
 WHERE salary > (
 SELECT AVG(salary) FROM employees
 );
+
+-- Big SUBQUERY JOINS EXAMPLE!
+SELECT 
+p.project_id,
+p.name,
+COUNT(ep.employee_id) AS 'ALL Employees',
+(
+SELECT COUNT(e1.employee_id)
+	FROM employees_projects AS ep1
+	JOIN employees AS e1 ON ep1.employee_id = e1.employee_id
+	JOIN addresses AS a1 ON e1.address_id = a1.address_id
+	JOIN employees AS e1 ON ep1.employee_id = e1.employee_id
+	WHERE t.name = 'Bellevue' AND ep1.project_id = p.project_id
+) AS 'Bell Employees'
+FROM projects AS p
+	JOIN employees_projects AS ep ON ep.project_id = p.project_id
+	JOIN employees AS e ON ep.employee_id = e.employee_id
+	JOIN addresses AS a ON e.address_id = a.address_id
+	JOIN towns AS t ON a.town_id = t.town_id
+GROUP BY p.project_id
+HAVING `Bell Employees` > `ALL Employees`
+ORDER BY project_id
+LIMIT 200;
