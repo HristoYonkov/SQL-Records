@@ -1,4 +1,4 @@
--- Creating a function in MySQL
+-- Creating a Function in MySQL
 -- Count employees by town!
 DELIMITER $$
 CREATE FUNCTION ufn_count_employees_by_town(`town_name` VARCHAR(50))
@@ -26,3 +26,15 @@ SELECT name, ufn_count_employees_by_town(name) AS 'Employees Count' FROM towns;
 SET @test := 10; -- Making a variable in the session, it is live until the server is shut down.
 SELECT @test; -- Selecting a variable.
 
+
+-- Creating a Profedures in MySQL
+DELIMITER $$
+CREATE PROCEDURE usp_select_employees()
+BEGIN
+	SELECT * FROM employees;
+END$$
+
+DELIMITER ;
+;
+
+CALL usp_select_employees(); -- Calling a procedure!
