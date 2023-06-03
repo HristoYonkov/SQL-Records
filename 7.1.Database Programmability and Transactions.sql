@@ -13,7 +13,7 @@ BEGIN
         JOIN towns as t ON t.town_id = a.town_id
         WHERE t.`name` = `town_name`
     );
-END$$
+END $$
 
 DELIMITER ;
 ;
