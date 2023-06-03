@@ -129,7 +129,24 @@ BEGIN
 END
 
 -- 14. Money Transfer
-
+CREATE PROCEDURE usp_transfer_money(from_account_id INT, to_account_id INT, money_amount DECIMAL(19, 4)) 
+BEGIN
+	IF money_amount > 0
+		AND (SELECT id FROM accounts WHERE from_account_id = id) IS NOT NULL
+		AND (SELECT id FROM accounts WHERE to_account_id = id) IS NOT NULL
+        AND (SELECT balance FROM accounts WHERE from_account_id = id) >= money_amount
+        THEN
+			START TRANSACTION;
+            
+            UPDATE accounts SET
+            balance = balance - money_amount
+            WHERE id = from_account_id;
+            
+            UPDATE accounts SET
+            balance = balance + money_amount
+            WHERE id = to_account_id;
+    END IF;
+END
 
 -- 15. Log Accounts Trigger
 
