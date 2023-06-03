@@ -68,13 +68,15 @@ CREATE PROCEDURE usp_get_employees_by_salary_level(salary_level VARCHAR(7))
 BEGIN
 	SELECT first_name, last_name FROM employees
     WHERE (SELECT ufn_get_salary_level(salary)) = salary_level
-    OR (SELECT ufn_get_salary_level(salary)) = salary_level
-    OR (SELECT ufn_get_salary_level(salary)) = salary_level
     ORDER BY first_name DESC, last_name DESC;
 END
 
 -- 07. Define Function
-
+CREATE FUNCTION ufn_is_word_comprised(set_of_letters varchar(50), word varchar(50))
+RETURNS INT
+BEGIN
+	RETURN word REGEXP (concat('^[',set_of_letters,']+$'));
+END
 
 -- 08. Find Full Name
 
