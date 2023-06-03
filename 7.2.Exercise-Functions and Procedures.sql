@@ -49,7 +49,29 @@ BEGIN
 END
 
 -- 06. Employees by Salary Level
-
+CREATE FUNCTION ufn_get_salary_level(`salary` DECIMAL(19, 4))
+RETURNS VARCHAR(7)
+DETERMINISTIC
+BEGIN
+    -- DECLARE result INT; -- Declaring variables in MySQL functions
+	--     SET result := 10; -- Set value in MySQL Variables
+	RETURN (
+		CASE
+			WHEN salary < 30000 THEN 'Low'
+			WHEN salary <= 50000 THEN 'Average'
+			ELSE 'High'
+        END
+    );
+END;
+-- Actual solution below!
+CREATE PROCEDURE usp_get_employees_by_salary_level(salary_level VARCHAR(7))
+BEGIN
+	SELECT first_name, last_name FROM employees
+    WHERE (SELECT ufn_get_salary_level(salary)) = salary_level
+    OR (SELECT ufn_get_salary_level(salary)) = salary_level
+    OR (SELECT ufn_get_salary_level(salary)) = salary_level
+    ORDER BY first_name DESC, last_name DESC;
+END
 
 -- 07. Define Function
 
