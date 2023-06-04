@@ -120,6 +120,29 @@ GROUP BY t.id
 ORDER BY t.id DESC;
 
 -- 10. Extract bill
+CREATE FUNCTION udf_client_bill(full_name VARCHAR(50))
+RETURNS DECIMAL(19, 2)
+DETERMINISTIC
+BEGIN
+	DECLARE space_index INT;
+    SET space_index := LOCATE(' ', full_name);
 
+	RETURN (
+    SELECT SUM(p.price) AS bill
+	FROM clients as c
+		JOIN orders_clients AS oc ON c.id = oc.client_id
+		JOIN orders AS ord ON ord.id = oc.order_id
+		JOIN orders_products AS op ON ord.id = op.order_id
+		JOIN products AS p ON op.product_id = p.id
+	WHERE c.first_name = SUBSTRING(full_name, 1, space_index - 1) AND
+    c.last_name = SUBSTRING(full_name, space_index + 1)
+    );
+END
 
 -- 11. Happy hour
+CREATE PROCEDURE udp_happy_hour(`type` VARCHAR(50))
+BEGIN
+	UPDATE products AS p
+    SET price = price * 0.8
+    WHERE price >= 10 AND p.`type` = `type`;
+END
