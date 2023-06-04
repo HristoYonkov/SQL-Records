@@ -64,3 +64,24 @@ CEILING(0.01 * salary)
 FROM waiters
 WHERE id > 6 AND salary IS NOT NULL
 );
+
+-- 03. Update
+UPDATE orders
+SET table_id = table_id -1
+WHERE id >= 12 AND id <= 23;
+
+-- 04. Delete
+DELETE FROM waiters
+WHERE id NOT IN (SELECT waiter_id FROM orders);
+
+-- 05. Clients
+SELECT id, first_name, last_name, birthdate, card, review
+FROM clients
+ORDER BY birthdate DESC, id DESC;
+
+-- 06. Birthdate
+SELECT first_name, last_name, birthdate, review FROM clients
+WHERE card IS NULL AND birthdate >= '1978-01-01' AND birthdate <= '1993-12-31'
+ORDER BY last_name DESC, id LIMIT 5;
+
+-- 07. Accounts
