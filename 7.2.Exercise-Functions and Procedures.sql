@@ -139,7 +139,7 @@ BEGIN
         SET balance = balance + money_amount
         WHERE id = account_id;
 	END IF;
-END 
+END
 
 -- 13. Withdraw Money
 CREATE PROCEDURE usp_withdraw_money(account_id INT, money_amount DECIMAL(19, 4))
