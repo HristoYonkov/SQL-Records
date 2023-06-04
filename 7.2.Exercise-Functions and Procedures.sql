@@ -132,6 +132,7 @@ END
 CREATE PROCEDURE usp_transfer_money(from_account_id INT, to_account_id INT, money_amount DECIMAL(19, 4)) 
 BEGIN
 	IF money_amount > 0
+		AND from_account_id <> to_account_id
 		AND (SELECT id FROM accounts WHERE from_account_id = id) IS NOT NULL
 		AND (SELECT id FROM accounts WHERE to_account_id = id) IS NOT NULL
         AND (SELECT balance FROM accounts WHERE from_account_id = id) >= money_amount
@@ -149,6 +150,22 @@ BEGIN
 END
 
 -- 15. Log Accounts Trigger
+CREATE TABLE `logs`(
+	log_id INT PRIMARY KEY AUTO_INCREMENT,
+	account_id INT NOT NULL,
+    old_sum DECIMAL(19, 4),
+    new_sum DECIMAL(19, 4)
+);
 
+CREATE TRIGGER trigger_balance_update
+AFTER UPDATE ON accounts
+FOR EACH ROW
+BEGIN
+	IF OLD.balance <> NEW.balance
+    THEN
+		INSERT INTO logs (account_id, old_sum, new_sum)
+		VALUE(OLD.id, OLD.balance, NEW.balance);
+    END IF;
+END
 
 -- 16. Emails Trigger
