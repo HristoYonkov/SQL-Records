@@ -85,3 +85,10 @@ WHERE card IS NULL AND birthdate >= '1978-01-01' AND birthdate <= '1993-12-31'
 ORDER BY last_name DESC, id LIMIT 5;
 
 -- 07. Accounts
+SELECT CONCAT(last_name, first_name, CHAR_LENGTH(first_name), 'Restaurant') AS username,
+REVERSE(SUBSTRING(email, 2, 12)) AS password
+FROM waiters
+WHERE salary IS NOT NULL
+ORDER BY password DESC;
+
+-- 08. Top from menu
