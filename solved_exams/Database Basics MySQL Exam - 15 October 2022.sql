@@ -118,6 +118,14 @@ JOIN orders_clients AS oc ON o.id = oc.order_id
 WHERE t.floor = 1
 GROUP BY t.id
 ORDER BY t.id DESC;
+-- alternatively case example
+(
+	CASE
+		WHEN COUNT(oc.client_id) < t.capacity THEN 'Free seats'
+		WHEN COUNT(oc.client_id) = t.capacity THEN 'Full'
+		WHEN COUNT(oc.client_id) > t.capacity THEN 'Extra seats'
+    END
+) AS availability
 
 -- 10. Extract bill
 CREATE FUNCTION udf_client_bill(full_name VARCHAR(50))
