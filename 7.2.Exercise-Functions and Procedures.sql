@@ -129,7 +129,17 @@ BEGIN
 END
 
 -- 12. Deposit Money
-
+CREATE PROCEDURE usp_deposit_money(account_id INT, money_amount DECIMAL(19, 4))
+BEGIN
+	IF money_amount > 0
+		AND (SELECT id FROM accounts WHERE id = account_id) IS NOT NULL
+    THEN
+		START TRANSACTION;
+        UPDATE accounts
+        SET balance = balance + money_amount
+        WHERE id = account_id;
+	END IF;
+END 
 
 -- 13. Withdraw Money
 CREATE PROCEDURE usp_withdraw_money(account_id INT, money_amount DECIMAL(19, 4))
