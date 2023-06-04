@@ -92,3 +92,34 @@ WHERE salary IS NOT NULL
 ORDER BY password DESC;
 
 -- 08. Top from menu
+SELECT id, name, COUNT(op.order_id) AS count
+FROM products AS p
+JOIN orders_products AS op ON p.id = op.product_id
+GROUP BY p.id
+HAVING count >= 5
+ORDER BY count DESC, name;
+
+-- 09. Availability
+SELECT
+t.id AS table_id,
+t.capacity,
+COUNT(oc.order_id) AS count_clients,
+(
+	IF(capacity > COUNT(oc.order_id), 'Free seats',
+		IF (capacity = COUNT(oc.client_id),
+			'Full',
+            'Extra seats'
+        )
+    )
+) AS availability
+FROM tables AS t
+JOIN orders AS o ON t.id = o.table_id
+JOIN orders_clients AS oc ON o.id = oc.order_id
+WHERE t.floor = 1
+GROUP BY t.id
+ORDER BY t.id DESC;
+
+-- 10. Extract bill
+
+
+-- 11. Happy hour
