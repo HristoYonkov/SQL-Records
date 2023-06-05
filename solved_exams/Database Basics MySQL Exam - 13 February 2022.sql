@@ -4,7 +4,22 @@
 -- 04. Delete
 -- 05. Categories
 -- 06. Quantity
+SELECT id, brand_id , name, quantity_in_stock
+FROM products
+WHERE price > 1000 AND quantity_in_stock < 30
+ORDER BY quantity_in_stock, id; 
+
 -- 07. Review
+SELECT
+id,
+content,
+rating,
+picture_url,
+published_at
+FROM reviews
+WHERE content LIKE 'My%' AND CHAR_LENGTH(content) > 61
+ORDER BY rating DESC;
+
 -- 08. First customers
 SELECT CONCAT(c.first_name, ' ', c.last_name) AS full_name, c.address, o.order_datetime AS order_date
 FROM customers AS c
