@@ -1,0 +1,11 @@
+-- 01. Table Design
+-- 02. Insert
+-- 03. Update
+-- 04. Delete
+-- 05. Categories
+-- 06. Quantity
+-- 07. Review
+-- 08. First customers
+-- 09. Best categories
+-- 10. Extract clients cards count
+-- 11. Reduce price
