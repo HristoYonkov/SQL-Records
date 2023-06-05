@@ -1,8 +1,31 @@
 -- 01. Table Design
+
+
 -- 02. Insert
+INSERT INTO reviews(content, picture_url, published_at, rating) (
+SELECT 
+SUBSTRING(description, 1, 15), 
+REVERSE(name), 
+'2010-10-10', 
+(price / 8) 
+FROM products
+WHERE id >= 5
+);
+
 -- 03. Update
+UPDATE products
+SET quantity_in_stock = quantity_in_stock - 5
+WHERE quantity_in_stock BETWEEN 60 AND 70;
+
 -- 04. Delete
+DELETE FROM customers
+WHERE id NOT IN (SELECT customer_id FROM orders);
 -- 05. Categories
+SELECT 
+id ,
+name
+FROM categories
+ORDER BY name DESC;
 -- 06. Quantity
 SELECT id, brand_id , name, quantity_in_stock
 FROM products
