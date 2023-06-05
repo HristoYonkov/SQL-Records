@@ -142,8 +142,8 @@ BEGIN
 		JOIN orders AS ord ON ord.id = oc.order_id
 		JOIN orders_products AS op ON ord.id = op.order_id
 		JOIN products AS p ON op.product_id = p.id
-	WHERE c.first_name = SUBSTRING(full_name, 1, space_index - 1) AND
-    c.last_name = SUBSTRING(full_name, space_index + 1)
+	    WHERE c.first_name = SUBSTRING(full_name, 1, space_index - 1) AND
+        c.last_name = SUBSTRING(full_name, space_index + 1)
     );
 END
 
