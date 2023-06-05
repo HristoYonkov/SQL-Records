@@ -73,6 +73,7 @@ WHERE quantity_in_stock BETWEEN 60 AND 70;
 -- 04. Delete
 DELETE FROM customers
 WHERE id NOT IN (SELECT customer_id FROM orders);
+
 -- 05. Categories
 SELECT 
 id ,
