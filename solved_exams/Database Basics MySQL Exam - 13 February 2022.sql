@@ -1,3 +1,4 @@
+
 -- 01. Table Design
 CREATE TABLE brands (
 	id INT PRIMARY KEY AUTO_INCREMENT,
