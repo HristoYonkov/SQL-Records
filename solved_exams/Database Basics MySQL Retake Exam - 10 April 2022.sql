@@ -1,4 +1,4 @@
--- 01.Table Design
+-- 01. Table Design
 CREATE TABLE countries (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL UNIQUE,
@@ -55,3 +55,13 @@ CREATE TABLE genres_movies (
     FOREIGN KEY (genre_id) REFERENCES genres (id),
     FOREIGN KEY (movie_id) REFERENCES movies (id)
 );
+
+-- 02. Insert
+
+-- 11. Movie awards
+SELECT 
+CONCAT(first_name, ' ', last_name) AS full_name,
+CONCAT(REVERSE(last_name), '@cast.com') AS email,
+birthdate AS age,
+height
+FROM actors;
