@@ -103,9 +103,8 @@ CONCAT(first_name, ' ', last_name) AS full_name,
 CONCAT(REVERSE(last_name), CHAR_LENGTH(last_name), '@cast.com') AS email,
 2022 - SUBSTRING(birthdate, 1, 4) AS age,
 height
-FROM actors AS a
-LEFT JOIN movies_actors AS ma ON ma.actor_id = a.id
-WHERE ma.actor_id IS NULL
+FROM actors AS
+WHERE id NOT IN (SELECT actor_id FROM movies_actors)
 ORDER BY height;
 
 -- 08. International festival
