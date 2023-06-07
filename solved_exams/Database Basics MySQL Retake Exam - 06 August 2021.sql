@@ -150,3 +150,11 @@ BEGIN
 END
 
 -- 11. Update budget of the games
+CREATE PROCEDURE udp_update_budget(min_game_rating FLOAT)
+BEGIN
+	UPDATE games
+    SET budget = budget + 100000,
+    release_date = CONCAT((1 + YEAR(release_date)), SUBSTRING(release_date, 5))
+	WHERE id NOT IN (SELECT game_id FROM games_categories)
+	AND rating > min_game_rating AND release_date IS NOT NULL;
+END;
