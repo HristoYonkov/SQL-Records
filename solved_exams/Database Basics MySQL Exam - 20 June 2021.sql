@@ -1,3 +1,13 @@
+-- 10. Find all courses by client’s phone number
+CREATE FUNCTION udf_courses_by_client (phone_num VARCHAR(20))
+RETURNS INT
+DETERMINISTIC
+BEGIN
+	RETURN(SELECT COUNT(c.phone_number) AS count
+FROM clients AS c
+JOIN courses AS cour ON cour.client_id = c.id
+WHERE c.phone_number = phone_num);
+END
 
 -- 11. Full info for address
 CREATE PROCEDURE udp_courses_by_address(address_name VARCHAR(100))
