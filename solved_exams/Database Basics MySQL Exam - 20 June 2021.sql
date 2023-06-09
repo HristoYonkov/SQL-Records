@@ -1,3 +1,19 @@
+
+-- 09. Full info for courses
+SELECT a.name AS name,
+IF(HOUR(c.start) BETWEEN 6 AND 20, 'Day', 'Night') AS day_time,
+c.bill,
+cl.full_name,
+ca.make,
+ca.model,
+cat.name AS category_name
+FROM addresses AS a
+JOIN courses AS c ON c.from_address_id = a.id
+JOIN cars AS ca ON ca.id = c.car_id
+JOIN categories AS cat ON cat.id = ca.category_id
+JOIN clients AS cl ON cl.id = c.client_id
+ORDER BY c.id;
+
 -- 10. Find all courses by client’s phone number
 CREATE FUNCTION udf_courses_by_client (phone_num VARCHAR(20))
 RETURNS INT
