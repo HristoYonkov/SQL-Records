@@ -1,3 +1,28 @@
+-- 
+
+-- 07. Number of courses
+SELECT c.id AS car_id,
+c.make,
+c.mileage,
+COUNT(cour.car_id) AS count_of_courses,
+ROUND(AVG(cour.bill), 2) AS avg_bill
+FROM cars AS c
+LEFT JOIN courses AS cour ON cour.car_id = c.id
+GROUP BY c.id
+HAVING count_of_courses != 2
+ORDER BY count_of_courses DESC, car_id;
+
+-- 08. Regular clients
+SELECT cl.full_name,
+COUNT(ca.id) AS count_of_cars,
+SUM(cou.bill) AS total_sum
+FROM clients AS cl
+JOIN courses AS cou ON cou.client_id = cl.id
+JOIN cars AS ca ON ca.id = cou.car_id
+WHERE SUBSTRING(cl.full_name, 2, 1) = 'a'
+GROUP BY cl.id
+HAVING count_of_cars > 1
+ORDER BY cl.full_name;
 
 -- 09. Full info for courses
 SELECT a.name AS name,
