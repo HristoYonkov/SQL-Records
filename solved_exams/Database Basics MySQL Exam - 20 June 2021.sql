@@ -66,7 +66,8 @@ INSERT INTO clients (full_name, phone_number) (
 -- 03. Update
 UPDATE cars
 SET `condition` = 'C'
-WHERE mileage >= 800000 OR mileage IS NULL AND year <= 2010 AND make != 'Mercedes-Benz';
+WHERE (mileage >= 800000 OR mileage IS NULL)
+AND year <= 2010 AND make != 'Mercedes-Benz';
 
 -- 04. Delete
 DELETE FROM clients
